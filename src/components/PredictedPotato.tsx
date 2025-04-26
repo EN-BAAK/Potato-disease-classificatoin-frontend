@@ -12,10 +12,14 @@ const PredictedPotato = ({
       <Card.Body>
         <Row className="d-flex flex-wrap justify-content-between">
           <Col xs="auto" className="mb-2">
-            <strong>Status:</strong> {potato.class}
+            <strong>Status:</strong>
+            <span className="px-1"> {potato.class}</span>
           </Col>
           <Col xs="auto" className="mb-2">
-            <strong>Confidence:</strong> {potato.confidence.toFixed(2)}%
+            <strong>Confidence:</strong>
+            <span className="px-1">
+              {Math.floor(potato.confidence * 100).toString()}%
+            </span>
           </Col>
         </Row>
         <Button
@@ -23,7 +27,7 @@ const PredictedPotato = ({
           onClick={resetPotato}
           className="w-100"
         >
-          Reset
+          Clear
         </Button>
       </Card.Body>
     </Card>

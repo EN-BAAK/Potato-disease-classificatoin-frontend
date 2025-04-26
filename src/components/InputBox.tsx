@@ -57,7 +57,7 @@ const InputBox = ({ setPotato }: InputBoxProps): React.ReactNode => {
     if (!image) return;
 
     const formData = new FormData();
-    formData.append("image", image);
+    formData.append("file", image);
 
     await mutation.mutateAsync(formData);
   };
