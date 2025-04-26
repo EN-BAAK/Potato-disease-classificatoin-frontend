@@ -8,7 +8,7 @@
       }
     }
 
-    button {
+    .close-btn {
       @include same-scale(30px);
       @include set-position(5px, 5px, auto, auto);
     }

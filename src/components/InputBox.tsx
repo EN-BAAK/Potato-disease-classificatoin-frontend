@@ -2,10 +2,20 @@ import React, { useState } from "react";
 import { Form, Card, Button } from "react-bootstrap";
 import { FaImage, FaTimes } from "react-icons/fa";
 import { cn } from "../misc/helpers";
+import { useMutation } from "react-query";
+import { predictPotatoState } from "../api-client";
 
 const InputBox = (): React.ReactNode => {
   const [image, setImage] = useState<File | null>(null);
-  const [isDragOver, setIsDragOver] = useState(false);
+  const [isDragOver, setIsDragOver] = useState<boolean>(false);
+  const [isLoading, setIsLoading] = useState<boolean>(false);
+
+  const mutation = useMutation(predictPotatoState, {
+    onMutate: () => setIsLoading(true),
+    onSuccess: async () => console.log("Success"),
+    onError: () => console.log("Error"),
+    onSettled: () => setIsLoading(false),
+  });
 
   const handleImageChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const file = event.target.files ? event.target.files[0] : null;
@@ -36,6 +46,15 @@ const InputBox = (): React.ReactNode => {
     setImage(null);
   };
 
+  const onSubmit = async () => {
+    if (!image) return;
+
+    const formData = new FormData();
+    formData.append("image", image);
+
+    await mutation.mutateAsync(formData);
+  };
+
   return (
     <div id="input-box" className="flex-center">
       <Card
@@ -49,7 +68,7 @@ const InputBox = (): React.ReactNode => {
         onDrop={handleDrop}
         onDragLeave={handleDragLeave}
       >
-        <Form>
+        <Form onSubmit={onSubmit}>
           <Form.Group>
             <div onClick={() => document.getElementById("imageInput")?.click()}>
               {image ? (
@@ -62,7 +81,7 @@ const InputBox = (): React.ReactNode => {
 
                   <Button
                     variant="danger"
-                    className="p-0 rounded-circle position-absolute"
+                    className="close-btn p-0 rounded-circle position-absolute"
                     onClick={handleRemoveImage}
                   >
                     <FaTimes size={16} />
@@ -83,6 +102,19 @@ const InputBox = (): React.ReactNode => {
               className="d-none"
               onChange={handleImageChange}
             />
+
+            {isLoading ? (
+              <p className="m-0 text-dark">Loading...</p>
+            ) : (
+              <Button
+                type="submit"
+                variant="primary"
+                className="mt-2 mx-auto d-block rounded-pill px-4"
+                disabled={!image}
+              >
+                Predict
+              </Button>
+            )}
           </Form.Group>
         </Form>
       </Card>
