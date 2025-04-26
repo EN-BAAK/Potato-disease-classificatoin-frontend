@@ -1,8 +1,14 @@
 import React from "react";
-import { Container } from "react-bootstrap";
+import Header from "./layouts/Header";
+import Home from "./screens/Home";
 
 function App(): React.JSX.Element {
-  return <Container className="py-5">hi</Container>;
+  return (
+    <main className="text-muted">
+      <Header />
+      <Home />
+    </main>
+  );
 }
 
 export default App;

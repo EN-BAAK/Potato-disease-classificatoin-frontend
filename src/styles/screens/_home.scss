@@ -1,0 +1,12 @@
+#home {
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center center;
+
+  &::before {
+    content: "";
+    background-color: #26688b44;
+    position: absolute;
+    @include set-position(0,0,0,0);
+  }
+}
