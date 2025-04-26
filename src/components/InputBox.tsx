@@ -4,15 +4,22 @@ import { FaImage, FaTimes } from "react-icons/fa";
 import { cn } from "../misc/helpers";
 import { useMutation } from "react-query";
 import { predictPotatoState } from "../api-client";
+import { InputBoxProps } from "../misc/types";
 
-const InputBox = (): React.ReactNode => {
+const InputBox = ({ setPotato }: InputBoxProps): React.ReactNode => {
   const [image, setImage] = useState<File | null>(null);
   const [isDragOver, setIsDragOver] = useState<boolean>(false);
   const [isLoading, setIsLoading] = useState<boolean>(false);
 
   const mutation = useMutation(predictPotatoState, {
     onMutate: () => setIsLoading(true),
-    onSuccess: async () => console.log("Success"),
+    onSuccess: async (data) => {
+      setPotato({
+        class: data.class,
+        confidence: data.confidence,
+        image: URL.createObjectURL(image!),
+      });
+    },
     onError: () => console.log("Error"),
     onSettled: () => setIsLoading(false),
   });
@@ -68,7 +75,7 @@ const InputBox = (): React.ReactNode => {
         onDrop={handleDrop}
         onDragLeave={handleDragLeave}
       >
-        <Form onSubmit={onSubmit}>
+        <Form>
           <Form.Group>
             <div onClick={() => document.getElementById("imageInput")?.click()}>
               {image ? (
@@ -107,10 +114,11 @@ const InputBox = (): React.ReactNode => {
               <p className="m-0 text-dark">Loading...</p>
             ) : (
               <Button
-                type="submit"
+                type="button"
                 variant="primary"
                 className="mt-2 mx-auto d-block rounded-pill px-4"
                 disabled={!image}
+                onClick={onSubmit}
               >
                 Predict
               </Button>
