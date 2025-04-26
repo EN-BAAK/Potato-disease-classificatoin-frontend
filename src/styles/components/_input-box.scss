@@ -1,0 +1,16 @@
+#input-box {
+  .card {
+    img {
+      @include same-scale(200px);
+      
+      @include breakpoints(md) {
+        @include same-scale(350px);
+      }
+    }
+
+    button {
+      @include same-scale(30px);
+      @include set-position(5px, 5px, auto, auto);
+    }
+  }
+}
