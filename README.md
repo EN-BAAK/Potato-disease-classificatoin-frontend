@@ -1,54 +1,89 @@
-# React + TypeScript + Vite
+# 🥔 Potato Disease Classification Frontend
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+This is a **fully responsive web application** for classifying **potato leaf diseases** using images.  
+Built with modern web technologies including:
 
-Currently, two official plugins are available:
+- **React**
+- **TypeScript**
+- **Vite**
+- **Bootstrap 5**
+- **SCSS**
+- **React-Bootstrap**
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+---
 
-## Expanding the ESLint configuration
+## 🌐 Features
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+- Drag and drop image upload  
+- Or select image from your device  
+- Predict disease with a single click  
+- Display prediction result with **confidence percentage**  
+- Fully responsive design for all screen sizes
 
-```js
-export default tseslint.config({
-  extends: [
-    // Remove ...tseslint.configs.recommended and replace with this
-    ...tseslint.configs.recommendedTypeChecked,
-    // Alternatively, use this for stricter rules
-    ...tseslint.configs.strictTypeChecked,
-    // Optionally, add this for stylistic rules
-    ...tseslint.configs.stylisticTypeChecked,
-  ],
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
-```
+---
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+## 🧠 Model Integration
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+This frontend app connects to a backend server which runs the trained machine learning model built with **TensorFlow** and **CNN**.
 
-export default tseslint.config({
-  plugins: {
-    // Add the react-x and react-dom plugins
-    'react-x': reactX,
-    'react-dom': reactDom,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended typescript rules
-    ...reactX.configs['recommended-typescript'].rules,
-    ...reactDom.configs.recommended.rules,
-  },
-})
-```
+Model and server details:  
+📦 [Potato Disease Classification Model](https://github.com/EN-BAAK/Potato-disease-classificatoin-model)  
+🔌 [Potato Disease Classification Server](https://github.com/EN-BAAK/Potato-disease-classificatoin-server)
+
+---
+
+## 🧪 Technology Stack
+
+| Tech            | Description                        |
+|-----------------|------------------------------------|
+| React           | UI Library                         |
+| TypeScript      | Typed JavaScript                   |
+| Vite            | Fast build tool                    |
+| SCSS            | CSS with superpowers               |
+| Bootstrap 5     | Styling framework                  |
+| React-Bootstrap | Bootstrap components for React     |
+
+---
+
+## 📚 Learning Resources
+
+This project is based on the YouTube playlist:
+
+📺 [Complete CNN with TensorFlow for Beginners](https://www.youtube.com/playlist?list=PLeo1K3hjS3utJFNGyBpIvjWgSDY0eOE8S)  
+© All credit to [codebasics](https://www.youtube.com/c/codebasics)
+
+Additional frontend logic and design adjustments were made to extend its functionality and user experience.
+
+---
+
+## 🚀 How to Use
+
+1. **Set up the model backend**  
+   👉 Follow the steps in:  
+   [Potato Disease Classification Model](https://github.com/EN-BAAK/Potato-disease-classificatoin-model)
+
+2. **Start the backend server**  
+   👉 Follow the steps in:  
+   [Potato Disease Classification Server](https://github.com/EN-BAAK/Potato-disease-classificatoin-server)
+
+3. **Navigate to the frontend project folder**  
+   ```bash
+      cd <project-folder>
+   ```
+
+4. **Install dependencies**  
+    ```bash
+      npm install
+    ```
+
+5. **Start the development server**  
+    ```bash
+      npm run dev
+    ```
+
+6. open your browser at the address shown in the terminal (typically http://localhost:5173).
+
+## 🛡 License
+
+This project is for educational use and built upon content from freely available resources.
+Please respect the rights of original creators and any licenses from dependencies or datasets used.
